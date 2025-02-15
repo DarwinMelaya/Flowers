@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rose</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="fireworks-container"></div>
+    <div class="click-text">Click the Screen</div>
+    <div class="container">
+      <div class="polaroid-container">
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          class="image-upload"
+        />
+        <div class="polaroid">
+          <div class="photo-area">
+            <img
+              id="uploadedImage"
+              src="#"
+              alt="Your Photo"
+              style="display: none"
+            />
+            <div class="upload-prompt">Click to upload your photo</div>
+          </div>
+          <div class="polaroid-caption">Happy Valentine ❤️</div>
+        </div>
+      </div>
+      <div class="glass"></div>
+      <div class="thorns">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="glow"></div>
+      <div class="rose-leaves">
+        <div></div>
+        <div></div>
+      </div>
+      <div class="rose-petals">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="sparkles">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="butterflies">
+        <div class="butterfly"></div>
+        <div class="butterfly"></div>
+      </div>
+    </div>
+    <audio id="backgroundMusic" loop preload="auto">
+      <source src="background.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+    <script>
+      // Get the audio element
+      const music = document.getElementById("backgroundMusic");
+
+      document.addEventListener("click", function () {
+        // Check if music is already playing
+        if (music.paused) {
+          // Add error handling and logging
+          music.play().catch(function (error) {
+            console.log("Error playing audio:", error);
+            alert(
+              "Hindi ma-play ang music. Baka blocked ng browser o wala ang music file."
+            );
+          });
+        }
+
+        // Check if audio file is loaded
+        console.log("Audio source:", music.currentSrc);
+        console.log("Audio ready state:", music.readyState);
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get the uploaded image from localStorage
+        const uploadedImageData = localStorage.getItem("uploadedImage");
+        if (uploadedImageData) {
+          const uploadedImage = document.getElementById("uploadedImage");
+          const uploadPrompt = document.querySelector(".upload-prompt");
+
+          uploadedImage.src = uploadedImageData;
+          uploadedImage.style.display = "block";
+          uploadPrompt.style.display = "none";
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
